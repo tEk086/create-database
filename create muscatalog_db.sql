@@ -6,22 +6,17 @@ CREATE TABLE public.artist (
 	CONSTRAINT artist_id_pk PRIMARY KEY (id),
 	CONSTRAINT artist_name_un UNIQUE (name)
 );
-
 CREATE TABLE public.collection (
 	id int4 NOT NULL,
 	"year of issue" date NOT NULL,
 	"name" varchar NOT NULL,
 	CONSTRAINT collection_id PRIMARY KEY (id)
 );
-
-
 CREATE TABLE public.genre (
 	id int4 NOT NULL,
 	"name" varchar NOT NULL,
 	CONSTRAINT genre_id_pk PRIMARY KEY (id)
 );
-
-
 CREATE TABLE public.album (
 	id int4 NOT NULL,
 	"name" varchar(100) NOT NULL,
@@ -30,9 +25,6 @@ CREATE TABLE public.album (
 	CONSTRAINT album_id_pk PRIMARY KEY (id),
 	CONSTRAINT album_artist_fk FOREIGN KEY (artist) REFERENCES public.artist(id)
 );
-
-
-
 CREATE TABLE public.artist_album (
 	artist_id int4 NOT NULL,
 	album_id int4 NOT NULL,
@@ -41,8 +33,6 @@ CREATE TABLE public.artist_album (
 	CONSTRAINT album_id_fkey FOREIGN KEY (album_id) REFERENCES public.album(id),
 	CONSTRAINT artist_id_fkey FOREIGN KEY (artist_id) REFERENCES public.artist(id)
 );
-
-
 CREATE TABLE public.artist_genre (
 	id int4 NOT NULL,
 	artist_id int4 NOT NULL,
@@ -51,8 +41,6 @@ CREATE TABLE public.artist_genre (
 	CONSTRAINT artist_id_fkey FOREIGN KEY (artist_id) REFERENCES public.artist(id),
 	CONSTRAINT genre_id_fkey FOREIGN KEY (genre_id) REFERENCES public.genre(id)
 );
-
-
 CREATE TABLE public.song (
 	id int4 NOT NULL,
 	"name" varchar NOT NULL,
@@ -61,8 +49,6 @@ CREATE TABLE public.song (
 	CONSTRAINT song_pk PRIMARY KEY (id),
 	CONSTRAINT song_fk FOREIGN KEY (id) REFERENCES public.album(id)
 );
-
-
 CREATE TABLE public.song_collection (
 	song_id int4 NOT NULL,
 	collection_id int4 NOT NULL,
